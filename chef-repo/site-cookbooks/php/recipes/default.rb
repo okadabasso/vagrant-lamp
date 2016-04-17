@@ -17,6 +17,26 @@ yum_repository 'remi' do
   action :create
 end
 
+yum_repository 'remi' do
+  description 'Les RPM de Remi - Repository'
+  baseurl 'http://rpms.famillecollet.com/enterprise/7/remi/x86_64/'
+  mirrorlist 'http://rpms.famillecollet.com/enterprise/7/remi/mirror'
+  repositoryid 'remi'
+  gpgkey 'http://rpms.famillecollet.com/RPM-GPG-KEY-remi'
+  fastestmirror_enabled true
+  action :create
+end
+
+%w[
+  gd-last
+  t1lib
+].each do |pkg|
+    package "#{pkg}" do
+        action [ :install ]
+        options "--enablerepo=remi"
+    end
+end
+
 %w[
   php
   php-cli
