@@ -1,13 +1,17 @@
 DEPENDENCIES
-  build-essential
+  mariadb
   yum
+  yum-epel
+  yum-remi
 
 GRAPH
-  build-essential (3.2.0)
-    seven_zip (>= 0.0.0)
-  chef_handler (1.3.0)
-  seven_zip (2.0.0)
-    windows (>= 1.2.2)
-  windows (1.39.2)
-    chef_handler (>= 0.0.0)
+  apt (3.0.0)
+  mariadb (0.3.1)
+    apt (>= 0.0.0)
+    yum (>= 0.0.0)
+    yum-epel (>= 0.0.0)
   yum (3.10.0)
+  yum-epel (0.6.6)
+    yum (~> 3.10.0)
+  yum-remi (0.1.0)
+    yum (>= 0.0.0)

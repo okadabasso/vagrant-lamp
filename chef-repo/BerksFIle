@@ -1,4 +1,8 @@
 source "https://supermarket.chef.io"
 
-cookbook 'build-essential'
 cookbook 'yum'
+cookbook 'yum-remi'
+cookbook 'yum-epel'
+cookbook 'mariadb'
+
+
