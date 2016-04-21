@@ -8,24 +8,7 @@
 #
 
 include_recipe 'yum::default'
-yum_repository 'remi' do
-  description 'Les RPM de Remi - Repository'
-  baseurl 'http://rpms.famillecollet.com/enterprise/7/php70/x86_64/'
-  repositoryid 'remi-php70'
-  gpgkey 'http://rpms.famillecollet.com/RPM-GPG-KEY-remi'
-  fastestmirror_enabled true
-  action :create
-end
-
-yum_repository 'remi' do
-  description 'Les RPM de Remi - Repository'
-  baseurl 'http://rpms.famillecollet.com/enterprise/7/remi/x86_64/'
-  mirrorlist 'http://rpms.famillecollet.com/enterprise/7/remi/mirror'
-  repositoryid 'remi'
-  gpgkey 'http://rpms.famillecollet.com/RPM-GPG-KEY-remi'
-  fastestmirror_enabled true
-  action :create
-end
+include_recipe 'yum-remi::default'
 
 %w[
   gd-last

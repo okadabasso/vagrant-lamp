@@ -7,8 +7,7 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.vm.box = "bento/centos-7.1"
-  config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "private_network", ip: "192.168.33.10"
+  config.vm.network "private_network", ip: "192.168.33.11"
   config.omnibus.chef_version = :latest
   
   config.vm.provider "virtualbox" do |vb|
@@ -20,11 +19,9 @@ Vagrant.configure(2) do |config|
   
   config.vm.provision "chef_zero" do |chef|
     chef.cookbooks_path = ["chef-repo/cookbooks", "chef-repo/site-cookbooks"]
-    chef.nodes_path = "nodes"
-    chef.run_list = [
-          "httpd",
-          "mariadb",
-          "php"
-      ]
+    chef.nodes_path = ["nodes", "chef-repo/nodes"]
+    chef.node_name = "lamp"
+    chef.environments_path = ["chef-repo/environments"]
+    chef.environment = "lamp"
   end
 end
