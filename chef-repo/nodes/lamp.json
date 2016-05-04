@@ -1,19 +1,47 @@
 {
-    "name": "sample",
-    "chef_type": "node",
-    "json_class": "Chef::Node",
+  "name": "sample",
+  "chef_type": "node",
+  "json_class": "Chef::Node",
+  "normal":{
     "mariadb": {
-        "server_root_password": "tesettest",
-        "install": {
-            "type": "package",
-            "version": "10.1.13"
+      "use_default_repository": true,
+      "allow_root_pass_change": true,
+      "server_root_password": "test",
+      "install": {
+        "type": "package",
+        "version": "10.1.13",
+        "prefer_os_package": false
+      },
+      "mysqld": {
+        "options":{
+          "collation-server" : "utf8_unicode_ci",
+          "init-connect" : "'SET NAMES utf8'",
+          "character-set-server" : "utf8"
         }
-    },
-    "run_list": [
-         "recipe[httpd]",
-          "recipe[mariadb::server]",
-          "recipe[mariadb::client]",
-          "recipe[php]"
-        
-    ]
+      },
+      "innodb": {
+          "log_file_size": "",
+          "bps_percentage_memory": false,
+          "buffer_pool_size": "256M",
+          "log_buffer_size": "8M",
+          "file_per_table": "1",
+          "open_files": "400",
+          "io_capacity": "400",
+          "flush_method": "O_DIRECT",
+          "options": {
+
+          }
+      }     
+    }
+  },  
+  "run_list": [
+    "recipe[yum]",
+    "recipe[yum-epel]",
+    "recipe[httpd]",
+    "recipe[mariadb::server]",
+    "recipe[mariadb::client]",
+    "recipe[php]",
+    "recipe[init]"
+      
+  ]
 }

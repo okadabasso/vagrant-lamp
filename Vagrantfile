@@ -19,9 +19,7 @@ Vagrant.configure(2) do |config|
   
   config.vm.provision "chef_zero" do |chef|
     chef.cookbooks_path = ["chef-repo/cookbooks", "chef-repo/site-cookbooks"]
-    chef.nodes_path = ["nodes", "chef-repo/nodes"]
+    chef.nodes_path = ["chef-repo/nodes"]
     chef.node_name = "lamp"
-    chef.environments_path = ["chef-repo/environments"]
-    chef.environment = "lamp"
   end
 end
